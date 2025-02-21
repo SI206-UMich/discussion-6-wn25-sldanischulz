@@ -92,7 +92,27 @@ def get_month_avg(d):
     Note: Don't strip or otherwise modify strings. Do not change datatypes except where necessary. 
         You'll have to make the vals int or float here and round the avg to pass tests.
     '''
+    output = {}
+
+    for key,val in d.items():
+        total = 0
+        count = 0
+        average = 0
+        #print(key)
+        for month,num in val.items():
+            n = int(num)
+            total = total + n
+            count = count + 1
+            #print(month, total, count)
+
+        average = total/count
+        output[key] = average
     
+    #print(output)
+
+    return output
+
+
     #pass
 
 class dis7_test(unittest.TestCase):
@@ -110,17 +130,13 @@ class dis7_test(unittest.TestCase):
 
     def test_get_annual_max(self):
         self.assertEqual(self.max_tup_list[2], ('2022', 'AUG', 628))
-'''
+
     def test_month_avg_list(self):
         self.assertAlmostEqual(self.month_avg_dict['2020'], 398, 0)
-'''
+
         
 def main():
 
-    
-    test = load_csv('daily_visitors.csv')
-    print(get_annual_max(test))
-    
     unittest.main(verbosity=2)
 
 if __name__ == '__main__':
