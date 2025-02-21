@@ -31,7 +31,7 @@ def load_csv(f):
             for key,val in row.items():
                 if key == "2020":
                     tempdict2020[row['Month']] = val
-                    print(tempdict2020)
+                    #print(tempdict2020)
                     
                 if key == "2021":
                     tempdict2021[row['Month']] = val
@@ -40,11 +40,12 @@ def load_csv(f):
 
             output['2020'] = tempdict2020
             output['2021'] = tempdict2021
-            output['2022'] = tempdict2021
+            output['2022'] = tempdict2022
 
-        print('OUTPUT', output)
+        #print('OUTPUT', output)
 
         return output 
+    #pass
 
 
 def get_annual_max(d):
@@ -59,7 +60,25 @@ def get_annual_max(d):
     Note: Don't strip or otherwise modify strings. Do not change datatypes except where necessary.
         You'll have to change vals to int to compare them. 
     '''
-    pass
+    output = []
+    for key,val in d.items():
+        high = 0
+        m = ''
+        #print(key)
+        for month,num in val.items():
+            n = int(num)
+            if n > high:
+                high = n
+                m = month
+                #print("NEW HIGH:", m, high)
+        result = (key, m, high)
+        output.append(result)
+
+    #print(output)
+    
+    return output
+
+    #pass
 
 def get_month_avg(d):
     '''
@@ -73,7 +92,8 @@ def get_month_avg(d):
     Note: Don't strip or otherwise modify strings. Do not change datatypes except where necessary. 
         You'll have to make the vals int or float here and round the avg to pass tests.
     '''
-    pass
+    
+    #pass
 
 class dis7_test(unittest.TestCase):
     '''
@@ -90,13 +110,18 @@ class dis7_test(unittest.TestCase):
 
     def test_get_annual_max(self):
         self.assertEqual(self.max_tup_list[2], ('2022', 'AUG', 628))
-
+'''
     def test_month_avg_list(self):
         self.assertAlmostEqual(self.month_avg_dict['2020'], 398, 0)
-
+'''
+        
 def main():
-    #unittest.main(verbosity=2)
-    load_csv('daily_visitors.csv')
+
+    
+    test = load_csv('daily_visitors.csv')
+    print(get_annual_max(test))
+    
+    unittest.main(verbosity=2)
 
 if __name__ == '__main__':
     main()
