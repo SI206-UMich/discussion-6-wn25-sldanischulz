@@ -1,6 +1,6 @@
 import unittest
 import os
-import csv
+import csv as c
 
 
 def load_csv(f):
@@ -21,7 +21,7 @@ def load_csv(f):
     # use this 'full_path' variable as the file that you open
 
     with open(full_path, newline='') as cf:
-        reader = csv.DictReader(cf)
+        reader = c.DictReader(cf)
         output = {}
         tempdict2020 = {}
         tempdict2021 = {}
